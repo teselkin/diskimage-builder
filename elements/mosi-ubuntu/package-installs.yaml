@@ -1,0 +1,7 @@
+adduser:
+locales:
+ca-certificates:
+cloud-init:
+cloud-utils:
+lsb-release:
+  phase: pre-install.d
