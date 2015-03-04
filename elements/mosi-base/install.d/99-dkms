@@ -6,4 +6,4 @@ fi
 set -eu
 set -o pipefail
 
-install-packages -m base dkms_package
+install-packages -m mosi-base dkms_package
