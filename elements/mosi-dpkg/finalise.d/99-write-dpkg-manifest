@@ -30,6 +30,7 @@ echo '{"packages": [' > ${DIB_MANIFEST_IMAGE_DIR}/${DPKG_MANIFEST_NAME}
 format='{"package": "${binary:Package}","arch": "${Architecture}","version": "${Version}","status": "${db:Status-Abbrev}"},'
 # Use the configurable dpkg --show output as a manifest
 dpkg-query --show --showformat="${format}" | tee -a ${DIB_MANIFEST_IMAGE_DIR}/${DPKG_MANIFEST_NAME}
+dpkg -l
 
 # Finish off the json structure and make it easier for human inspection
 sed -i -e 's/,$/\n]}/g' -e 's/\(},\)/    \1\n/g' ${DIB_MANIFEST_IMAGE_DIR}/${DPKG_MANIFEST_NAME}

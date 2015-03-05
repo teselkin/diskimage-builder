@@ -1,0 +1,6 @@
+{
+  "default": {
+    "cloud_init": "cloud-init",
+    "cloud_utils": "cloud-utils",
+  }
+}
