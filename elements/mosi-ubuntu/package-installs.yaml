@@ -1,8 +1,3 @@
-ca-certificates:
-lsb-release:
-  phase: pre-install.d
+vim:
 linux-firmware:
 linux-image-3.13.0-40-generic:
-net-tools:
-vim:
-rsyslog:

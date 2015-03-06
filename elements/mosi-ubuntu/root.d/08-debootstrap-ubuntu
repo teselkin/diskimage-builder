@@ -47,7 +47,7 @@ else
     # Have to --include=sudo for pre-install.d use of sudoers files
     sudo sh -c "http_proxy=$http_proxy debootstrap --verbose \
         --variant=minbase \
-        --include=sudo,adduser,locales,openssh-server,file,less,kbd,curl,rsync,bash-completion,python \
+        --include=ubuntu-minimal,ubuntu-standard,curl \
         --components=main \
         --arch=${ARCH} \
         $KEYRING_OPT \
@@ -84,20 +84,9 @@ EOF
 auto lo
 iface lo inet loopback
 
-# Source interfaces
-# Please check /etc/network/interfaces.d before changing this file
-# as interfaces may have been defined in /etc/network/interfaces.d
-# NOTE: the primary ethernet device is defined in
-# /etc/network/interfaces.d/eth0
-# See LP: #1262951
-source /etc/network/interfaces.d/*.cfg
+auto eth0
+iface eth0 inet loopback
 EOF
-    for interface in eth0 eth1; do
-        cat << EOF | sudo tee ${TARGET_ROOT}/etc/network/interfaces.d/${interface}.cfg
-auto ${interface}
-iface ${interface} inet dhcp
-EOF
-    done
 
     echo Caching debootstrap result in $DEBOOTSTRAP_TARBALL
     sudo tar --numeric-owner -C $TARGET_ROOT -zcf $DEBOOTSTRAP_TARBALL --exclude='./tmp/*' .
