@@ -17,3 +17,6 @@ if [[ -n "${NODEPOOL_SSH_KEY}" ]]; then
 fi
 
 chown -R jenkins:jenkins /home/jenkins/.ssh
+
+echo 'jenkins ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/jenkins
+chmod 440 /etc/sudoers.d/jenkins
