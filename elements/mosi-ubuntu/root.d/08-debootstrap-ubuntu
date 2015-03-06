@@ -47,7 +47,7 @@ else
     # Have to --include=sudo for pre-install.d use of sudoers files
     sudo sh -c "http_proxy=$http_proxy debootstrap --verbose \
         --variant=minbase \
-        --include=ubuntu-minimal,ubuntu-standard,curl \
+        --include=ubuntu-minimal,ubuntu-standard,curl,openssh-server \
         --components=main \
         --arch=${ARCH} \
         $KEYRING_OPT \
@@ -85,7 +85,7 @@ auto lo
 iface lo inet loopback
 
 auto eth0
-iface eth0 inet loopback
+iface eth0 inet dhcp
 EOF
 
     echo Caching debootstrap result in $DEBOOTSTRAP_TARBALL
