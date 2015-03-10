@@ -27,8 +27,7 @@ PROJECT_CONFIG_REVISION='mosi'
 
 
 if [ -n "$NODEPOOL_SSH_KEY" ] ; then
-    puppet_install_users="install_users => false,
-ssh_key => '$NODEPOOL_SSH_KEY',"
+    puppet_install_users="ssh_key => '$NODEPOOL_SSH_KEY',"
 else
     puppet_install_users=""
 fi
@@ -56,7 +55,12 @@ EOF
 # Use detailed exit codes to get that info and determine whether
 # the return code indicates failure.
 set +e
-puppet apply --detailed-exitcodes --modulepath=/opt/build_git/openstack-infra/system-config/modules:/etc/puppet/modules /tmp/local.pp
+puppet apply \
+  --debug --verbose \
+  --color=false \
+  --detailed-exitcodes \
+  --modulepath=/opt/git/mos-infra/system-config/modules:/etc/puppet/modules \
+  /tmp/local.pp | tee /var/log/puppet-apply.log
 PUPPET_RETURN=$?
 if [ "$PUPPET_RETURN" -eq 4 ] || [ "$PUPPET_RETURN" -eq 6 ] ; then
     exit $PUPPET_RETURN
