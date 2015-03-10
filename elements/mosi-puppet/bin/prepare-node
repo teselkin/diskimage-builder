@@ -21,6 +21,11 @@ SUDO=${SUDO:-true}
 THIN=${THIN:-true}
 ALL_MYSQL_PRIVS=${ALL_MYSQL_PRIVS:-false}
 
+GIT_BASE='ssh://mos-infra-ci@review.fuel-infra.org:29418'
+PROJECT_CONFIG_NAME='mos-infra/project-config'
+PROJECT_CONFIG_REVISION='mosi'
+
+
 if [ -n "$NODEPOOL_SSH_KEY" ] ; then
     puppet_install_users="install_users => false,
 ssh_key => '$NODEPOOL_SSH_KEY',"
@@ -40,7 +45,9 @@ class {'openstack_project::single_use_slave':
   sudo => $SUDO,
   thin => $THIN,
   all_mysql_privs => $ALL_MYSQL_PRIVS,
-  install_resolv_conf => false,
+  enable_unbound => false,
+  project_config_repo => '${GIT_BASE}/${PROJECT_CONFIG_NAME}',
+  project_config_revision => '${PROJECT_CONFIG_REVISION}',
   $puppet_install_users
 }
 EOF
