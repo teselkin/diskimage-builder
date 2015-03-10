@@ -8,7 +8,7 @@ set -eu
 set -o pipefail
 
 git_dir="${TMP_MOUNT_PATH}/opt/git"
-system_config_dir="${git_dir}/system-config"
+system_config_dir="${git_dir}/mos-infra/system-config"
 
 if [[ -d "${system_config_dir}" ]]; then
     sudo rm -rf "${system_config_dir}"

@@ -28,9 +28,7 @@ TMP_MOUNT_PATH=os.environ['TMP_MOUNT_PATH']
 
 GIT_DIR=os.path.join(TMP_MOUNT_PATH, 'opt/git')
 GIT_BASE = 'ssh://review.fuel-infra.org:29418'
-LOCAL_PATH = os.path.join(TMP_MOUNT_PATH, 'etc/project-config/gerrit/projects.yaml')
-URL = ('https://git.openstack.org/cgit/openstack-infra/project-config/'
-       'plain/gerrit/projects.yaml')
+LOCAL_PATH = os.path.join(GIT_DIR, 'mos-infra/project-config/gerrit/projects.yaml')
 PROJECT_RE = re.compile('^-?\s+project:\s+(.*)$')
 
 
@@ -80,9 +78,6 @@ def main():
     # Check if local file already exists
     with open(LOCAL_PATH) as f:
         data = f.read()
-    # TODO(jeblair): use gerrit rest api when available
-    if not data:
-        data = urllib2.urlopen(URL).read()
     for line in data.split('\n'):
         # We're regex-parsing YAML so that we don't have to depend on the
         # YAML module which is not in the stdlib.
