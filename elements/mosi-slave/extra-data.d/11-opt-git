@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ ${DIB_DEBUG_TRACE:-0} -gt 0 ]; then
+    set -x
+fi
+
+set -eu
+set -o pipefail
+
+git_dir="${TMP_MOUNT_PATH}/opt/git"
+
+if [[ ! -d "${git_dir}" ]]; then
+    sudo mkdir "${git_dir}"
+fi
+
+sudo chown -R $(whoami) "${git_dir}"
