@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ ${DIB_DEBUG_TRACE:-0} -gt 0 ]; then
+    set -x
+fi
+
+set -eu
+set -o pipefail
+
+git_dir="${TMP_MOUNT_PATH}/opt/git"
+system_config_dir="${git_dir}/system-config"
+
+if [[ -d "${system_config_dir}" ]]; then
+    sudo rm -rf "${system_config_dir}"
+fi
+
+if [[ ! -d "${git_dir}" ]]; then
+    sudo mkdir -p "${git_dir}"
+fi
+
+sudo chown -R $(whoami) "${git_dir}"
+mkdir -p "${system_config_dir}"
+
+pushd "${system_config_dir}"
+git clone ssh://review.fuel-infra.org:29418/mos-infra/system-config.git .
+popd
