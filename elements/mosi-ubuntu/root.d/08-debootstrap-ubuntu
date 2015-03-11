@@ -57,6 +57,9 @@ else
         $DIB_DISTRIBUTION_MIRROR \
         ${DIB_DEBIAN_DEBOOTSTRAP_SCRIPT:-}"
 
+    echo "Allow unauthenticated packages"
+    echo 'Apt::Get::AllowUnauthenticated "yes";' | sudo tee "${TARGET_ROOT}/etc/apt/apt.conf.d/95allow-unauthenticated"
+
     echo "Customizing result for cloud use"
 
     sudo install -d -m 0755 -o root -g root ${TARGET_ROOT}/etc/sudoers.d

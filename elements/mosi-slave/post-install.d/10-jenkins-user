@@ -1,5 +1,7 @@
 #!/bin/bash
 
+exit 0
+
 if [ ${DIB_DEBUG_TRACE:-0} -gt 0 ]; then
     set -x
 fi

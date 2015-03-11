@@ -61,7 +61,7 @@ puppet apply \
   --detailed-exitcodes \
   --modulepath=/opt/git/mos-infra/system-config/modules:/etc/puppet/modules \
   /tmp/local.pp | tee /var/log/puppet-apply.log
-PUPPET_RETURN=$?
+PUPPET_RETURN=${PIPESTATUS[0]}
 if [ "$PUPPET_RETURN" -eq 4 ] || [ "$PUPPET_RETURN" -eq 6 ] ; then
     exit $PUPPET_RETURN
 fi
