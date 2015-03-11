@@ -25,5 +25,3 @@ pushd "${project_config_dir}"
 git clone ssh://review.fuel-infra.org:29418/mos-infra/project-config.git .
 git checkout mosi
 popd
-
-cat "${project_config_dir}/gerrit/projects.yaml"
