@@ -57,8 +57,20 @@ else
         $DIB_DISTRIBUTION_MIRROR \
         ${DIB_DEBIAN_DEBOOTSTRAP_SCRIPT:-}"
 
-    echo "Allow unauthenticated packages"
-    echo 'Apt::Get::AllowUnauthenticated "yes";' | sudo tee "${TARGET_ROOT}/etc/apt/apt.conf.d/95allow-unauthenticated"
+    echo 'Apt::Get::AllowUnauthenticated "yes";' \
+        | sudo tee "${TARGET_ROOT}/etc/apt/apt.conf.d/95allow-unauthenticated"
+
+    cat << EOF | sudo tee "${TARGET_ROOT}/etc/apt/preferences.d/01-fuel.pref"
+Package: *
+Pin: origin mirror.fuel-infra.org
+Pin-Priority: 999
+EOF
+
+    cat << EOF | sudo tee "${TARGET_ROOT}/etc/apt/preferences.d/01-fuel-overrides.pref"
+Package: tzdata
+Pin: version *
+Pin-Priority: 1000
+EOF
 
     echo "Customizing result for cloud use"
 
