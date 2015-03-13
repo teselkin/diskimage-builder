@@ -67,7 +67,13 @@ Pin-Priority: 999
 EOF
 
     cat << EOF | sudo tee "${TARGET_ROOT}/etc/apt/preferences.d/01-fuel-overrides.pref"
+# For openjdk-7-jdk
 Package: tzdata
+Pin: version *
+Pin-Priority: 1000
+
+# For libpq-dev
+Package: libpq5 libkrb5* libk5crypto3 libgssapi-krb5-2 libcomerr2
 Pin: version *
 Pin-Priority: 1000
 EOF

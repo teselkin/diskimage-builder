@@ -1,0 +1,6 @@
+{
+  "default": {
+    "libffi_dev_pkg": "libffi-dev",
+    "libpq_dev_pkg": "libpq-dev"
+  }
+}
