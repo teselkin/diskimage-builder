@@ -78,7 +78,7 @@ Pin: version *
 Pin-Priority: 1000
 
 # For libmysqlclient-dev
-Package: libmysqlclient*
+Package: libmysqlclient* mysql-common
 Pin: version *
 Pin-Priority: 1000
 EOF
