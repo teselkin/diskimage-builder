@@ -76,6 +76,11 @@ Pin-Priority: 1000
 Package: libpq5 libkrb5* libk5crypto3 libgssapi-krb5-2 libcomerr2
 Pin: version *
 Pin-Priority: 1000
+
+# For libmysqlclient-dev
+Package: libmysqlclient*
+Pin: version *
+Pin-Priority: 1000
 EOF
 
     echo "Customizing result for cloud use"
