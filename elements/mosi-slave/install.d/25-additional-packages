@@ -7,4 +7,8 @@ fi
 set -eu
 set -o pipefail
 
-install-packages -m mosi-slave libffi_dev_pkg libpq_dev_pkg libmysqlclient_dev_pkg
+install-packages -m mosi-slave \
+  libffi_dev_pkg \
+  libpq_dev_pkg \
+  libmysqlclient_dev_pkg \
+  dctrl_tools_pkg

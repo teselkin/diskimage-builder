@@ -2,6 +2,7 @@
   "default": {
     "libffi_dev_pkg": "libffi-dev",
     "libpq_dev_pkg": "libpq-dev",
-    "libmysqlclient_dev_pkg": "libmysqlclient-dev"
+    "libmysqlclient_dev_pkg": "libmysqlclient-dev",
+    "dctrl_tools_pkg": "dctrl-tools"
   }
 }
