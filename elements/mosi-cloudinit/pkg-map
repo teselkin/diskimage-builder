@@ -1,0 +1,7 @@
+{
+  "default": {
+    "cloud_init": "cloud-init",
+    "cloud_utils": "cloud-utils",
+    "cloud_growroot": "cloud-initramfs-growroot"
+  }
+}
